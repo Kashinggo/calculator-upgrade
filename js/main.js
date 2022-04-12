@@ -4,6 +4,7 @@ calcContainerEle.addEventListener("click", (e) => onButtonClick(e));
 var resultEle = document.querySelector("#result");
 
 var curOperation, curNumber1, curNumber2;
+var activeOperationBtnEle;
 
 function compute(num1, num2, op) {
   var n1 = Number(num1);
@@ -17,7 +18,7 @@ function compute(num1, num2, op) {
       result = n1 - n2;
       break;
     case "/":
-      //   if (n2 != 0) reset = n1 / n2;
+      //   if (n2 != 0) reset = n1 / n2
       result = n1 / n2;
       break;
     case "x":
@@ -39,6 +40,7 @@ function doNumber(num) {
 }
 
 function doOperation(operation) {
+  var prevOperation = curOperation;
   // if curNumber2 is active, then must be a continuous operation
   // so perform curOperation on num1 and num2 and assign result to num1
   if (curNumber2) {
@@ -48,6 +50,14 @@ function doOperation(operation) {
     result.innerHTML = result;
   }
   curOperation = operation;
+
+  // make prev selected operation unactive (if necesssary)
+  if (prevOperation) {
+    var prevBtnEle = document.querySelector(
+      `#${operationSymbolMap[prevOperation]}`
+    );
+    prevBtnEle.classList.remove("active");
+  }
 }
 
 function reset() {
@@ -66,6 +76,7 @@ function doEqual() {
   if (curNumber1 && curNumber2 && curOperation) {
     var result = compute(curNumber1, curNumber2, curOperation);
     resultEle.innerHTML = result;
+    activeOperationBtnEle.classList.remove("active");
   }
 }
 
