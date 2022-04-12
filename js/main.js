@@ -1,7 +1,14 @@
-var calcContainerEle = document.querySelector("#calculator" - container);
+var calcContainerEle = document.querySelector("#calculator-container");
 calcContainerEle.addEventListener("click", (e) => onButtonClick(e));
 
 var resultEle = document.querySelector("#result");
+
+var operationSymbolMap = {
+  "/": "divide",
+  "+": "add",
+  "-": "minus",
+  x: "multiply",
+};
 
 var curOperation, curNumber1, curNumber2;
 var activeOperationBtnEle;
@@ -18,7 +25,6 @@ function compute(num1, num2, op) {
       result = n1 - n2;
       break;
     case "/":
-      //   if (n2 != 0) reset = n1 / n2
       result = n1 / n2;
       break;
     case "x":
