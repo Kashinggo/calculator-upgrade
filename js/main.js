@@ -65,7 +65,7 @@ function reset(lastComputedNum) {
     activeOperationBtnEle.classList.remove("active");
     activeOperationBtnEle = null;
   }
-  if (lastComputedNum) {
+  if (lastComputedNum !== undefined) {
     // equal button clicked
     curNumber1 = lastComputedNum;
   } else {
@@ -78,7 +78,17 @@ function reset(lastComputedNum) {
 }
 
 function makePosNeg() {
-  console.log("makePosNeg");
+  if (curNumber1 || curNumber2) {
+    var newNumber;
+    if (curNumber2) {
+      newNumber = curNumber2 * -1;
+      curNumber2 = newNumber;
+    } else {
+      newNumber = curNumber1 * -1;
+      curNumber1 = newNumber;
+    }
+    resultEle.innerHTML = newNumber;
+  }
 }
 
 function makeDecimal() {
