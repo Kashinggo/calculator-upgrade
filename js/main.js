@@ -92,7 +92,25 @@ function makePosNeg() {
 }
 
 function makeDecimal() {
-  console.log("makeDecimal");
+  function appendDecimal(n) {
+    var numStr = n !== undefined ? n.toString() : "0";
+    if (!numStr.includes(".")) {
+      numStr = `${numStr}.`;
+    }
+    return numStr;
+  }
+
+  if (curOperation) {
+    // curNumber2 decimal
+    var nStr = appendDecimal(curNumber2);
+    resultEle.innerHTML = nStr;
+    curNumber2 = nStr;
+  } else {
+    // curNumber1 decimal
+    var nStr = appendDecimal(curNumber1);
+    resultEle.innerHTML = nStr;
+    curNumber1 = nStr;
+  }
 }
 
 function doEqual() {
