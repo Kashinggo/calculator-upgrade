@@ -98,6 +98,7 @@ function onButtonClick(e) {
   var btnClickedValue = e.target.innerHTML;
   if (Number.isInteger(parseInt(btnClickedValue))) {
     doNumber(btnClickedValue);
+    debug();
     return;
   }
 
@@ -129,4 +130,11 @@ function onButtonClick(e) {
     default:
       break;
   }
+  debug();
+}
+
+function debug() {
+  document.querySelector("#curNumber1").innerHTML = curNumber1;
+  document.querySelector("#curNumber2").innerHTML = curNumber2;
+  document.querySelector("#curOperation").innerHTML = curOperation;
 }
